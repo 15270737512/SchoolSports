@@ -1,0 +1,125 @@
+*{
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+a,a:hover,a:focus,a:active{
+  color: white;
+  text-decoration: none;
+}
+li{
+  list-style: none;
+}
+td,th{
+  text-align: center;
+}
+/* header start */
+.logo{
+  float: left;
+  width: 230px;
+  height: 50px;
+  text-align: center;
+  line-height: 50px;
+  font-size: 20px;
+  font-family: "黑体","宋体";
+  color: white;
+  background: rgb(54, 127, 169);
+}
+.logo:hover{
+  background: rgb(40, 110, 150);
+}
+.navbar{
+  background-color: #3c8dbc;
+  margin-left: 230px;
+  margin-bottom: 0;
+  border: none;
+  height: 50px;
+  border-radius: 0;
+}
+.sidebar-toggle{
+  color: #fff;
+  float: left;
+  padding: 15px 15px;
+}
+.sidebar-toggle:hover,.login a:hover{
+  background: rgba(0, 0, 0, 0.1);
+}
+.login{
+  text-align: center;
+  line-height: 50px;
+  width: 80px;
+  height: 50px;
+  float: right;
+}
+.login a{
+  font-family: cursive;
+  font-weight: 500;
+  display: block;
+  color: white;
+}
+/* header end */
+
+/* section start */
+.left{
+  position: absolute;
+  top: 50px;
+  left: 0;
+  width: 230px;
+  min-height: calc(100vh - 50px);
+  z-index: 810;
+  float: left;
+  background: #222d32;
+  padding-top: 35px;
+}
+.side-menu a{
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.side-menu,.side-menu ul{
+  margin: 0;
+  padding: 0;
+}
+.list a{
+  border-left: 3px #222d32 solid;
+  color: #8aa4af;
+  padding: 10px 20px;
+}
+.list a:hover,.list a:active{
+  color: white;
+  border-left: 3px blue solid;
+  background: #1e282c;
+}
+.list a::before{
+  content: "　";
+  float: left;
+}
+.xz{
+  float: right;
+}
+.select a,.insert a{
+  color: #8aa4af;
+  background: #2c3b41;
+  line-height: 30px;
+  padding: 0 20px;
+}
+.select a:hover,.insert a:hover{
+  color: white;
+}
+.right{
+  background: #e3e3e3;
+  width: calc(100vw - 230px);
+  height: calc(100vh - 50px);
+  float: right;
+  padding: 50px;
+}
+.Excel{
+  float: left;
+}
+.page{
+  float: right;
+}
+.container-small{
+  width: 500px;
+}
+/* section end */

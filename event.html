@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/main.css">
+    <title>运动会</title>
+  </head>
+  <body>
+    <div class="content">
+      <header>
+        <a href="index.html" class="logo">
+          <span class="logo-lg">校运会系统</span>
+        </a>
+        <div class="navbar navbar-static-top" role="navigation">
+          <a class="sidebar-toggle" data-toggle="offcanvas" role="button">
+            <span class="hiden">|||</span>
+          </a>
+          <div class="login dropdown-toggle" data-toggle="dropdown">
+            <a href="#">我de<span class="caret"></span></a>
+          </div>
+          <ul class="dropdown-menu pull-right">
+            <li><a role="presentation" href="login.html">登录</a></li>
+            <li role="presentation" class="divider"></li>
+            <li><a role="presentation" href="login.html">退出</a></li>
+          </ul>
+        </div>
+      </header>
+      <section>
+        <div class="left">
+          <ul class="side-menu">
+            <li class="list list-select" data-toggle="collapse" data-target="#select">
+              <a href="#"><span>信息模块</span><span class="xz xz-select"></span></a>
+            </li>
+             <li>
+              <ul id="select" class="select collapse in">
+               <li><a href="athlete.html">运动员信息</a></li>
+                <li><a href="referee.html">裁判信息</a></li>
+                <li><a href="competition.html">赛事信息</a></li>
+                <li><a href="event.html">项目信息</a></li>
+                <li><a href="collage.html">学院信息</a></li>
+                <li><a href="achievement.html">成绩信息</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <div class="right">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <div class="panel-title" style="font-size:23px;text-align:center;">
+                项目信息
+              </div>
+            </div>
+            <div class="panel-body">
+              <table class="table table-striped" id="tableExcel">
+                <thead>
+                  <tr>
+                    <th>项目名称</th>
+                    <th>操作</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="site in list">
+                    <td style="vertical-align: middle;">{{site.name}}</td>
+                    <td>
+                      <button @click="click_event_update(site.evId)" type="button" name="update" class="btn btn-warning" data-toggle="modal" data-target="#update_event">修改</button>
+                      <button @click="click_event_delete(site.evId)" type="button" name="del" class="btn btn-danger">删除</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="panel-footer" style="min-height:55px;">
+              <div class="Excel">
+                <a href="#"><button class="btn btn-default" type="button" name="button" data-toggle="modal" data-target="#insertyyy">添加项目</button></a>
+              </div>
+              <div class="modal fade" id="insertyyy">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title" style="text-align:center;">添加项目</h1>
+                    </div>
+                    <div class="modal-body">
+                      <form class="container container-small">
+                            <div class="form-group">
+                              <label class="control-label">项目名称</label>
+                              <input type="text" class="form-control" name="name" id="pro_name">
+                            </div>
+                            <div id="submit" style="float:right;">
+                              <button onclick="add_event()" type="button" name="button" class="btn btn-md btn-primary">提交</button>
+                              <button class="btn btn-warning btn-md"  type="button" name="button" data-dismiss="modal">取消</button>
+                            </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="modal fade" id="update_event">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title" style="text-align:center;">修改项目</h1>
+                    </div>
+                    <div class="modal-body">
+                      <form class="container container-small">
+                            <div class="form-group">
+                              <label class="control-label">项目名称</label>
+                              <input type="text" class="form-control" name="name" id="pro_name_up" v-model="listid.name" :value="listid.name">
+                            </div>
+                            <div id="submit" style="float:right;">
+                              <button onclick="ev_update()" type="button" name="button" class="btn btn-md btn-primary">提交</button>
+                              <button class="btn btn-warning btn-md"  type="button" name="button" data-dismiss="modal">取消</button>
+                            </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="page">
+                总共：{{sites.total}} 条，显示：{{sites.pageSize}} 条 / 页，
+                共 {{sites.pages}} 页 <button @click="page_first()" class="btn btn-default" type="button" name="button">首页</button>
+                <button @click="page_up()" class="btn btn-default" type="button" name="button">上一页</button>
+                第 <span id="pagenum">{{sites.pageNum}}</span> 页 <button @click="page_down()" class="btn btn-default" type="button" name="button">下一页</button>
+                <button @click="page_last()" class="btn btn-default" type="button" name="button">末页</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+    <script src="js/jquery/jquery.min.js"></script>
+	  <script src="js/bootstrap/bootstrap.min.js"></script>
+    <script src="js/vue/vue.min.js"></script>
+    <script src="js/vue/vue-resource.min.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+    <script type="text/javascript" src="js/outExcel.js"></script>
+    <script type="text/javascript" src="js/event.js"></script>
+  </body>
+</html>
